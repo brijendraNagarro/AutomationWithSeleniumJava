@@ -1,2 +1,4 @@
 # QAProject
-A Test Project for NYT 
+An Automation Test Project for NYT.
+
+
