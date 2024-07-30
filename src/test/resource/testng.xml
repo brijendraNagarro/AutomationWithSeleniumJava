@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Selenium Test Suite" verbose="1" parallel="tests" thread-count="2">
+    <!-- Define a test -->
+    <test name="Home Page Tests" group-by-instances="true">
+        <classes>
+            <class name="org.example.BaseTest"/>
+        </classes>
+    </test>
+
+</suite>
