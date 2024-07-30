@@ -2,6 +2,7 @@ package org.example;
 
 import org.example.POM.HomepagePOM;
 import org.openqa.selenium.WebDriver;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 
 import java.time.Duration;
@@ -21,7 +22,10 @@ public class BaseTest {
 
 
     @AfterMethod
-    public void teatDown(){
+    public void teatDown(ITestResult result){
+        if (ITestResult.FAILURE == result.getStatus()) {
+            utils.takeScreenshot(driver, result.getMethod().getMethodName());
+        }
         if (driver != null) {
             driver.quit();
         }

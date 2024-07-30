@@ -11,12 +11,13 @@ import java.time.Duration;
 
 public class HomeTest extends BaseTest {
 
-
+    @Test
     public void LoginTest(){
         HomepagePOM homepage = new HomepagePOM(driver);
-        homepage.clickOnLogin();
-//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+
         utils.waitForVisibilityOfElement(homepage.logoElement);
+        homepage.MouseOverMainMenu();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         // to be implemented
         // check if navigated to login page
         // assert with login title;
