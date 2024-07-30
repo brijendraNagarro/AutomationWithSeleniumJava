@@ -12,19 +12,17 @@ import java.time.Duration;
 public class HomeTest extends BaseTest {
 
     @Test
-    public void LoginTest(){
+    public void NavigationTest(){
         HomepagePOM homepage = new HomepagePOM(driver);
 
         utils.waitForVisibilityOfElement(homepage.logoElement);
-        homepage.MouseOverMainMenu();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
-        // to be implemented
-        // check if navigated to login page
-        // assert with login title;
+        homepage.MouseOverMainMenuAndClickOnFirstSubMenu();
+        String navigationPageTitle = homepage.getNavigationPageTitle();
+        Assert.assertEquals(navigationPageTitle,"U.S. NEWS");
     }
 
     @Test
-    public void searchFunctionalityTest(){
+    public void SearchFunctionalityTest(){
         String data = "election";
         HomepagePOM homepage = new HomepagePOM(driver);
         SearchPagePOM searchpage = new SearchPagePOM(driver,utils);
@@ -38,6 +36,13 @@ public class HomeTest extends BaseTest {
         searchpage.getArticlePageHeading();
         String articlePageHeading = searchpage.getArticlePageHeading();
         Assert.assertEquals(searchPageHeading,articlePageHeading);
+    }
+
+    @Test
+    public void MastHeadMenuAvailablity(){
+        HomepagePOM homepagePOM = new HomepagePOM(driver);
+        int mastHeadMenuCount = homepagePOM.getMastHeadMenuCount();
+        Assert.assertEquals(5,mastHeadMenuCount);
     }
 
 }

@@ -22,16 +22,25 @@ public class HomepagePOM {
     private By searchInputBox = By.xpath(searchInputXpath);
     private String searchSubmitBtnXpath = "//button[@data-testid='search-submit']";
     private By searchSubmitBtn = By.xpath(searchSubmitBtnXpath);
-    private String MainMenuUSDropdownXpath = "//div[@data-testid='masthead-nested-nav']//li[@data-testid='nav-item-U.S.']";
+    private String MainMenuUSDropdownXpath = "//nav[@data-testid='desktop-nested-nav']//button[@aria-label='open U.S. submenu']";
 
     private By MainMenuUSDropdown = By.xpath(MainMenuUSDropdownXpath);
 
-    private String MainMenuDropdownItemXpath = "//div[@data-testid='nav-dropdown-U.S.' and @aria-hidden='false']//a[text()='U.S.']";
+    private String MainMenuDropdownItemXpath = "//div[@aria-label='U.S. submenu' and @aria-hidden='false']//a[text()='U.S.']";
 
     private By MainMenuDropdownItem = By.xpath(MainMenuDropdownItemXpath);
     private String logoElementXpath = "//div[@data-testid='masthead-desktop-logo']";
     public By logoElement = By.xpath(logoElementXpath);
 
+    private String NavigationPageTitleXpath = "//div[@id='masthead-section-label']";
+    private By NavigationPageTitle = By.xpath(NavigationPageTitleXpath);
+
+    private String MastHeadMenuXpath = "//ul[@data-testid='masthead-edition-menu']//li";
+    private By MastHeadMenu = By.xpath(MastHeadMenuXpath);
+
+    public int getMastHeadMenuCount(){
+        return driver.findElements(MastHeadMenu).size();
+    }
     public void clickOnLogin(){
         driver.findElement(loginBtn).click();
     }
@@ -46,11 +55,17 @@ public class HomepagePOM {
         driver.findElement(searchSubmitBtn).click();
     }
 
-    public void MouseOverMainMenu(){
-        Utilities utils = new Utilities(driver, Duration.ofSeconds(3));
+    public void MouseOverMainMenuAndClickOnFirstSubMenu(){
+        Utilities utils = new Utilities(driver, Duration.ofSeconds(5));
+        driver.findElement(MainMenuUSDropdown).click();
         Actions action = new Actions(driver);
-        action.moveToElement(driver.findElement(MainMenuUSDropdown)).perform();
-        utils.waitForClickable(MainMenuDropdownItem);
-        action.moveToElement(driver.findElement(MainMenuDropdownItem)).click();
+//        action.moveToElement(driver.findElement(MainMenuUSDropdown)).perform();
+        utils.waitForVisibilityOfElement(MainMenuDropdownItem);
+        action.moveToElement(driver.findElement(MainMenuDropdownItem)).click().perform();
+
+    }
+
+    public String getNavigationPageTitle(){
+        return driver.findElement(NavigationPageTitle).getText().toString();
     }
 }
