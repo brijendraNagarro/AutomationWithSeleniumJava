@@ -1,29 +1,29 @@
 package org.example;
 
-import jdk.jfr.Timespan;
-import org.openqa.selenium.By;
+import org.example.POM.HomepagePOM;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 
 import java.time.Duration;
 
+
 public class BaseTest {
-    private WebDriver driver;
+    public WebDriver driver;
+    public Utilities utils;
 
     @BeforeMethod
     public void setup(){
         driver = WebDriverInit.createWebDriver();
         driver.get("https://www.nytimes.com/international/");
+        utils = new Utilities(driver, Duration.ofSeconds(5));
+        driver.manage().window().maximize();
     }
 
-    @Test
-    public void test1(){
-        driver.findElement(By.xpath("//a/span[text()='Log in']")).click();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
-    }
 
     @AfterMethod
     public void teatDown(){
-        driver.quit();
+        if (driver != null) {
+            driver.quit();
+        }
     }
 }
