@@ -1,7 +1,12 @@
 package org.example.POM;
 
+import org.example.Utilities;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
+
+import javax.swing.*;
+import java.time.Duration;
 
 public class HomepagePOM {
     private WebDriver driver;
@@ -17,7 +22,13 @@ public class HomepagePOM {
     private By searchInputBox = By.xpath(searchInputXpath);
     private String searchSubmitBtnXpath = "//button[@data-testid='search-submit']";
     private By searchSubmitBtn = By.xpath(searchSubmitBtnXpath);
+    private String MainMenuUSDropdownXpath = "//div[@data-testid='masthead-nested-nav']//li[@data-testid='nav-item-U.S.']";
 
+    private By MainMenuUSDropdown = By.xpath(MainMenuUSDropdownXpath);
+
+    private String MainMenuDropdownItemXpath = "//div[@data-testid='nav-dropdown-U.S.' and @aria-hidden='false']//a[text()='U.S.']";
+
+    private By MainMenuDropdownItem = By.xpath(MainMenuDropdownItemXpath);
     private String logoElementXpath = "//div[@data-testid='masthead-desktop-logo']";
     public By logoElement = By.xpath(logoElementXpath);
 
@@ -35,4 +46,11 @@ public class HomepagePOM {
         driver.findElement(searchSubmitBtn).click();
     }
 
+    public void MouseOverMainMenu(){
+        Utilities utils = new Utilities(driver, Duration.ofSeconds(3));
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(MainMenuUSDropdown)).perform();
+        utils.waitForClickable(MainMenuDropdownItem);
+        action.moveToElement(driver.findElement(MainMenuDropdownItem)).click();
+    }
 }
