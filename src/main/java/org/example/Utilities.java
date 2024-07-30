@@ -51,6 +51,7 @@ public class Utilities {
         } catch (IOException e) {
             System.out.println("Failed to save screenshot: " + e.getMessage());
         }
+
     }
 
 

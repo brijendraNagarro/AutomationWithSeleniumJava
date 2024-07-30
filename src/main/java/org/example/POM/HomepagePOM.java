@@ -3,10 +3,12 @@ package org.example.POM;
 import org.example.Utilities;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
 import javax.swing.*;
 import java.time.Duration;
+import java.util.List;
 
 public class HomepagePOM {
     private WebDriver driver;
@@ -38,9 +40,11 @@ public class HomepagePOM {
     private String MastHeadMenuXpath = "//ul[@data-testid='masthead-edition-menu']//li";
     private By MastHeadMenu = By.xpath(MastHeadMenuXpath);
 
-    public int getMastHeadMenuCount(){
-        return driver.findElements(MastHeadMenu).size();
+    public List<WebElement> getMastHeadMenu(){
+        return driver.findElements(MastHeadMenu);
     }
+
+
     public void clickOnLogin(){
         driver.findElement(loginBtn).click();
     }

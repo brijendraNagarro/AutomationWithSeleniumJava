@@ -4,10 +4,14 @@ import org.example.POM.HomepagePOM;
 import org.example.POM.SearchPagePOM;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class HomeTest extends BaseTest {
 
@@ -41,8 +45,22 @@ public class HomeTest extends BaseTest {
     @Test
     public void MastHeadMenuAvailablity(){
         HomepagePOM homepagePOM = new HomepagePOM(driver);
-        int mastHeadMenuCount = homepagePOM.getMastHeadMenuCount();
+        List<String> expectedValues = Arrays.asList("U.S.", "INTERNATIONAL", "CANADA", "ESPAÑOL","中文");
+
+        List<WebElement> _list = homepagePOM.getMastHeadMenu();
+        int mastHeadMenuCount = _list.size();
         Assert.assertEquals(5,mastHeadMenuCount);
+
+        List<String> actualValues = new ArrayList<>();
+        for (WebElement element : _list) {
+            actualValues.add(element.getText().trim());
+        }
+
+
+        Assert.assertEquals(actualValues, expectedValues, "The actual values do not match the expected values.");
+
+
+
     }
 
 }
