@@ -36,5 +36,20 @@ This is a Test Automation Framework for Newyork Times Webapplication
     5. Execution stop if there is a failure detected and it take the screenshot.
     6. @aftertest method dstroys the instance and quits the browser.
 
+### TestCase : NavigationTest
+    Navigation Test Looks for the Main navigation and open its submenu 
+    from 1st menu and select 1st submenu. Further it checks if user is getting redirected to correct page.
+
+### TestCase : SearchFunctionalityTest
+    Search functionality test located the search icon then click on it to open search input
+    feeds 'election' as search data and click on submit to search
+    It verifies weather search functionality is working by checking the entered data in result page
+    further it check if the article links are working by clicking on first result and verifies title on next page
+
+### TestCase : MastHeadMenuAvailablity
+    This test cases checks for availablity of language menus and verifies 
+    the displayed languages by iterating over List<WebElement>
+
+
 
     
