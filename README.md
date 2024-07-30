@@ -10,7 +10,7 @@ This is a Test Automation Framework for Newyork Times Webapplication
     -> Base Test -> This class contain setup and tear down method, used to open url and quit browser instances with screenshot for failing assertions.
     -> Home Test -> This class contains the test scripts with @test annotation
     -> utilities -> This class contains common methods implementation for Explicit wait and screenshots.
-    -> WebDriverInit -> This class initializes the browser
+    -> WebDriverInit -> This class initializes the browser based on the value it gets from 'excelForSelenium.xlsx' file also sets the chrome broswer as default in case of exception.
 
 ### Src>testResults
     testResults is the directory which stores the screenshots of the 
@@ -18,6 +18,10 @@ This is a Test Automation Framework for Newyork Times Webapplication
 
 ### Src>test>resource>testng.xml
     testng file is defined here which contains execution settings
+
+### Src>test>resource>excelForSelenium.xlsx
+    This excel file contain the name of the browser in a sheet names 'browserSettings' at 0,0 position
+
 
 ### pom.xml
     contains the dependencies for selenium, testng and apache poi
