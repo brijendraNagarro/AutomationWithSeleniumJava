@@ -1,4 +1,4 @@
-# QAProject
-An Automation Test Project for NYT.
+# Please Refer to Master Branch
+ 
 
 
